@@ -1,0 +1,1 @@
+/home/fckr/.vimrc
