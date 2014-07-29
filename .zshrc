@@ -1,16 +1,22 @@
-#Cows that say a fortune
-cow=`ls /usr/share/cows/ | sort -R | tail -1 | cut -d '.' -f 1`
-cowfacenumber=`shuf -i 1-6 -n 1`
-cowfaceoptions="bdgpstwy"
-cowface=${cowfaceoptions:cowfacenumber:1}
-fortune -s | cowsay -$cowface -f $cow
+HISTFILE=~/.histfile
+HISTSIZE=1000
+SAVEHIST=1000
+setopt extendedglob
+bindkey -v
 
-# for tmux: export 256color
-[ -n "$TMUX" ] && export TERM=rxvt-unicode-256color
+zstyle :compinstall filename '/home/fckr/.zshrc'
 
+autoload -Uz compinit
+compinit
+
+autoload -U promptinit
+promptinit
+
+export PROMPT='[%n@%m %~]%\$ '
 
 #aliases
 alias l="ls -a --color=always"
+alias ll=" l -lh"
 alias x=sudo
 alias z=clear
 alias u="x pacman -Syu"
@@ -24,3 +30,4 @@ alias nh="x nethogs enp2s0"
 alias v=vim
 alias sp="spim -f"
 alias grep="grep --color=auto"
+alias xv="sudo vim -u ~/.vimrc"
