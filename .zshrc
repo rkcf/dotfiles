@@ -3,7 +3,7 @@ HISTSIZE=1000
 SAVEHIST=1000
 setopt extendedglob
 bindkey -v
-
+export PATH=$PATH:~/progs/shell
 zstyle :compinstall filename '/home/fckr/.zshrc'
 
 autoload -Uz compinit
@@ -13,17 +13,17 @@ autoload -U promptinit
 promptinit
 
 export PROMPT='[%n@%m %~]%\$ '
-
+export EDITOR=vim
 #aliases
 alias l="ls -a --color=always"
 alias ll=" l -lh"
 alias x=sudo
 alias z=clear
+alias pac="x pacman -S"
 alias u="x pacman -Syu"
 alias ..="cd .."
-alias sstat="x systemctl"
-alias sres="x systemctl restart"
-alias skill="x systemctl stop"
+alias s="x systemctl"
+alias sstat="x systemctl status"
 alias py=python
 alias tz="tar xvfz"
 alias nh="x nethogs enp2s0"
