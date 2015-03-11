@@ -11,7 +11,6 @@ $copy_cmd $PWD/.xmonad/xmonad.hs ~/.xmonad
 
 for file in ${files[@]}
 do
-    echo $file
     $copy_cmd $PWD/$file ~/ 
 done
 
