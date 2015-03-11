@@ -4,7 +4,7 @@ set tabstop=4
 set shiftwidth=4
 set autoindent
 set grepprg=grep\ -nH\ $*
-let g:tex_flafor = "latex"
+let g:tex_flavor = "latex"
 syntax on
 
 "colortheme

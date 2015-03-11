@@ -26,8 +26,6 @@ alias s="x systemctl"
 alias sstat="x systemctl status"
 alias py=python
 alias tz="tar xvfz"
-alias nh="x nethogs enp2s0"
 alias v=vim
-alias sp="spim -f"
 alias grep="grep --color=auto"
 alias xv="sudo vim -u ~/.vimrc"
