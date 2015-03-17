@@ -12,7 +12,7 @@ import XMonad.Layout.Accordion
 import qualified Data.Map as M
 
 main = do
-    xmproc <- spawnPipe "/bin/xmobar ~/.xmonad/xmobarrc"
+    xmproc <- spawnPipe "/bin/xmobar ~/.xmobarrc"
     xmonad $ defaultConfig
         { keys = myKeys <+> keys defaultConfig
         , manageHook = manageDocks <+> manageHook defaultConfig
