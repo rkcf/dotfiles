@@ -43,20 +43,22 @@ myLayout = tiled ||| Mirror tiled ||| Full
 		delta = 3/100
 
 myWorkspaces = 	
-	[ "irc"
-	, "term"
-	, "web"
-	, "steam"
-	, "5"
+	[ "1:irc"
+	, "2:term"
+	, "3:web"
+	, "4:steam"
+	, "5:media"
 	, "6"
 	, "7"
 	]
 
 myStartupHook :: X ()
 myStartupHook = do
-	spawnOn "irc" "startIrc"
-	spawnOn "web" "chromium"
-	spawnOn "term" myTerminal
+	spawn "compton -cCf --backend glx --vsync opengl"
+	spawnOn "1:irc" "termite -e weechat"
+	spawnOn "3:web" "chromium"
+	spawnOn "2:term" myTerminal
+	spawnOn "5:media" "termite -e ncmpcpp"
 
 myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList
     [ ((modm, xK_F1), manPrompt defaultXPConfig)
