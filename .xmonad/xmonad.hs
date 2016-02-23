@@ -46,15 +46,16 @@ myWorkspaces =
 	[ "1:irc"
 	, "2:term"
 	, "3:web"
-	, "4:steam"
+	, "4:games"
 	, "5:media"
 	, "6"
 	, "7"
+  , "8"
+  , "9"
 	]
 
 myStartupHook :: X ()
 myStartupHook = do
-	spawn "compton -cCf --backend glx --vsync opengl"
 	spawnOn "1:irc" "termite -e weechat"
 	spawnOn "3:web" "chromium"
 	spawnOn "2:term" myTerminal
