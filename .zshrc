@@ -7,12 +7,11 @@ export PATH=$PATH:~/progs/shell
 zstyle :compinstall filename '/home/fckr/.zshrc'
 
 autoload -Uz compinit
-compinit
 
 autoload -U promptinit
 promptinit
 
-export PROMPT='%n@%m:%~%\ ↬ '
+export PROMPT='[%n@%m %~]%\$ '
 export EDITOR=vim
 #aliases
 alias l="ls -a --color=always"
@@ -23,6 +22,7 @@ alias pac="x pacman -S"
 alias u="x pacman -Syu"
 alias ..="cd .."
 alias s="x systemctl"
+alias sstat="x systemctl status"
 alias py=python
 alias tz="tar xvfz"
 alias v=vim
