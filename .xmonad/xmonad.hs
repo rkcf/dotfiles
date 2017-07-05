@@ -1,39 +1,32 @@
 import XMonad
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
+import XMonad.Hooks.EwmhDesktops
 import XMonad.Util.Run(spawnPipe)
-import XMonad.Util.EZConfig(additionalKeys)
 import System.IO
 import XMonad.Prompt
-import XMonad.Prompt.Man
-import XMonad.Prompt.Shell
 import XMonad.Actions.GridSelect
-import XMonad.Layout.Accordion
 import XMonad.Actions.SpawnOn
 import XMonad.Layout.Spacing
 import qualified Data.Map as M
 
 main = do
     xmproc <- spawnPipe "/bin/xmobar ~/.xmobarrc"
-    xmonad $ defaultConfig
-        { XMonad.keys = myKeys <+> keys defaultConfig
-		, XMonad.workspaces = myWorkspaces
-        , XMonad.manageHook = manageSpawn <+> manageDocks <+> manageHook defaultConfig 
-		, XMonad.layoutHook = avoidStruts $ myLayout
-		, XMonad.startupHook = myStartupHook
-		, XMonad.logHook = dynamicLogWithPP xmobarPP
-			{ ppOutput = hPutStrLn xmproc
-			, ppTitle = xmobarColor "green" "" . shorten 50
-			}
-		, XMonad.terminal      = myTerminal
-        , XMonad.borderWidth   = myBorderWidth
-        , XMonad.modMask       = myModMask
-		}
+    xmonad $ ewmh defaultConfig
+       { XMonad.keys            = myKeys <+> keys defaultConfig
+        , XMonad.workspaces     = myWorkspaces
+        , XMonad.manageHook     = manageSpawn <+> manageDocks <+> manageHook defaultConfig 
+        , XMonad.handleEventHook= docksEventHook <+> handleEventHook defaultConfig
+        , XMonad.layoutHook     = avoidStruts myLayout
+        , XMonad.startupHook    = myStartupHook
+        , XMonad.terminal       = myTerminal
+        , XMonad.borderWidth    = myBorderWidth
+        , XMonad.modMask        = myModMask
+		    }
 
 myModMask = mod4Mask
-myTerminal = "termite"
+myTerminal = "st"
 myBorderWidth = 0
-
 
 myLayout = tiled ||| Mirror tiled ||| Full
 	 where
@@ -43,7 +36,7 @@ myLayout = tiled ||| Mirror tiled ||| Full
 		delta = 3/100
 
 myWorkspaces = 	
-	[ "1:irc"
+	[ "1:misc"
 	, "2:term"
 	, "3:web"
 	, "4:games"
@@ -51,18 +44,16 @@ myWorkspaces =
 	, "6"
 	, "7"
   , "8"
-  , "9"
+  , "9:prod"
 	]
 
 myStartupHook :: X ()
 myStartupHook = do
-	spawnOn "1:irc" "termite -e weechat"
-	spawnOn "3:web" "chromium"
-	spawnOn "2:term" myTerminal
-	spawnOn "5:media" "termite -e ncmpcpp"
+	spawnOn "2:term" "st -e tmux"
+	spawnOn "3:web" "firefox"
+	spawnOn "9:prod" "hamster"
 
-myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList
-    [ ((modm, xK_F1), manPrompt defaultXPConfig)
-    , ((modm, xK_F2), shellPrompt defaultXPConfig)
-    , ((modm, xK_g), goToSelected defaultGSConfig)
+myKeys conf@XConfig {XMonad.modMask = modm} = M.fromList
+    [ ((modm, xK_g), goToSelected defaultGSConfig)
+    , ((modm, xK_b), sendMessage ToggleStruts) 
     ]
