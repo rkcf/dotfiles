@@ -1,32 +1,23 @@
-"vundle stuff
-set nocompatible
-filetype off
-set rtp+=~/.vim/bundle/Vundle.vim
+"vim-plug stuff
 
-call vundle#begin()
+call plug#begin()
 
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'bling/vim-airline'
-Plugin 'scrooloose/syntastic'
-Plugin 'edkolev/tmuxline.vim'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'Valloric/YouCompleteMe'
-Plugin 'alvan/vim-closetag'
-Plugin 'posva/vim-vue'
-Plugin 'KabbAmine/vCoolor.vim'
-Plugin 'tpope/vim-fugitive'
-Plugin 'scrooloose/nerdtree'
-Plugin 'kien/ctrlp.vim'
-Plugin 'plytophogy/vim-virtualenv'
-Plugin 'tpope/vim-unimpaired'
-Plugin 'jceb/vim-orgmode'
-Plugin 'tpope/vim-speeddating'
-Plugin 'fatih/vim-go'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'mattn/emmet-vim'
-Plugin 'pangloss/vim-javascript'
+Plug 'bling/vim-airline'
+Plug 'edkolev/tmuxline.vim'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'alvan/vim-closetag'
+Plug 'posva/vim-vue'
+Plug 'KabbAmine/vCoolor.vim'
+Plug 'tpope/vim-fugitive'
+Plug 'scrooloose/nerdtree'
+Plug 'plytophogy/vim-virtualenv'
+Plug 'scrooloose/nerdcommenter'
+Plug 'mattn/emmet-vim'
+Plug 'pangloss/vim-javascript'
+Plug 'w0rp/ale'
+Plug 'Valloric/YouCompleteMe'
 
-call vundle#end()
+call plug#end()
 
 let g:airline_powerline_fonts = 1
 let g:airline_theme = 'jellybeans'
@@ -45,6 +36,9 @@ au Filetype html setlocal sts=2 sw=2 expandtab
 au Filetype javascript setlocal sts=2 sw=2 expandtab
 au BufNewFile,BufRead *.ejs set filetype=html
 
+"ale stuff
+let g:airline#extensions#ale#enabled = 1
+let g:ale_lint_delay = 1500
 
 "vim-js
 let g:javascript_plugin_jsdoc = 1
@@ -54,29 +48,12 @@ map <leader>l :exec &conceallevel ? "set conceallevel=0" : "set conceallevel=1"<
 "nerd commenter
 let g:NERDSpaceDelims = 1
 let g:NERDTrimTrailingWhitespace = 1
-
+let g:NERDCustomDelimiters = { 'ch': { 'left': '/**','right': '*/' } }
 
 "emmet
 let g:user_emmet_install_global = 0
 autocmd FileType html,css,php EmmetInstall
 let g:user_emmet_leader_key='\'
-
-"syntastic
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-
-let g:syntastic_javascript_checkers = ['eslint']
-let g:syntastic_javascript_eslint_exe='$(npm bin)/eslint'
-
-"nerdcommenter
-let g:NERDCustomDelimiters = { 'ch': { 'left': '/**','right': '*/' } }
-
 
 "misc
 set autoindent
