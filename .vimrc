@@ -16,6 +16,8 @@ Plug 'mattn/emmet-vim'
 Plug 'pangloss/vim-javascript'
 Plug 'w0rp/ale'
 Plug 'Valloric/YouCompleteMe'
+Plug 'lervag/vimtex'
+Plug 'dracula/vim', {'as': 'dracula'}
 
 call plug#end()
 
@@ -39,11 +41,22 @@ au BufNewFile,BufRead *.ejs set filetype=html
 "ale stuff
 let g:airline#extensions#ale#enabled = 1
 let g:ale_lint_delay = 1500
+let g:ale_vue_vls_use_global = 1
+let g:ale_linters = {
+			\ 'vue': ['vls'],
+			\ }
+
+"YCM stuff
+let g:ycm_filetype_blacklist = {
+	\ 'text': 1,
+	\ 'markdown': 1,
+	\ 'tex': 1
+	\}
 
 "vim-js
 let g:javascript_plugin_jsdoc = 1
 let g:javascript_plugin_flow = 1
-map <leader>l :exec &conceallevel ? "set conceallevel=0" : "set conceallevel=1"<CR>
+"map <leader>l :exec &conceallevel ? "set conceallevel=0" : "set conceallevel=1"<CR>
 
 "nerd commenter
 let g:NERDSpaceDelims = 1
@@ -63,13 +76,12 @@ set autoindent
 set grepprg=grep\ -nH\ $*
 set exrc
 set secure
-let g:tex_flavor = "latex"
+let g:tex_flavor = "xetex"
 syntax on
 
 "colortheme
 set t_Co=256
-set background=dark
-colorscheme slate
+colorscheme peachpuff
 set laststatus=2
 
 "folding

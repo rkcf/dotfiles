@@ -10,7 +10,6 @@ setopt hist_save_no_dups
 setopt hist_ignore_dups
 setopt hist_find_no_dups
 setopt hist_ignore_space
-setopt share_history
 setopt interactivecomments
 
 autoload -Uz up-line-or-beginning-search down-line-or-beginning-search
@@ -34,7 +33,7 @@ autoload -Uz compinit
 compinit
 
 setopt extendedglob
-setopt correctall
+#setopt correctall
 
 # dir navigation
 DIRSTACKSIZE=20
@@ -65,12 +64,15 @@ bindkey -v
 export PAGER=less
 export EDITOR=vim
 export GOPATH=/home/fckr/progs/go
+export PATH=$PATH:~/progs/shell
+
+export GPG_TTY=$(tty)
+gpg-connect-agent updatestartuptty /bye >/dev/null
 
 # prompt
 export PROMPT='%F{254}[%F{cyan}%n@%m%F{red} %~%F{254}]%\$ '
 autoload -U promptinit
 promptinit
-
 
 #aliases
 alias d="dirs -v | head -n 5"
@@ -91,7 +93,9 @@ alias grep="grep --color=auto"
 alias xv="sudo vim -u ~/.vimrc"
 alias ports="netstat -tulanp"
 alias myip="lynx --dump http://ipecho.net/plain"
-alias ssh="TERM=xterm ssh"
+alias ssh="TERM=xterm-256color ssh"
 alias pac="sudo pacman -S"
 alias pacr="sudo pacman -Rs"
 alias u="sudo pacman -Syu"
+alias ccm="sudo ccm"
+alias emacs="TERM=xterm-256color emacs -nw"
