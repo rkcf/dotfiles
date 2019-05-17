@@ -154,6 +154,15 @@ bindsym $mod+r mode "resize"
 # finds out, if available)
 bar {
 		status_command i3status
+		font pango:Hack 7
+		colors {
+			background #282A36
+			statusline #F8F8F2
+			focused_workspace #A1FCB8 #44475A #F8F8F2
+			inactive_workspace #44475A #282A36 #F8F8F2
+			active_workspace #44475A #282A36 #F8F8F2
+			urgent_workspace #F1FF52 #F1FA8C #282A36
+		}
 }
 # bar {
 	# status_command i3blocks

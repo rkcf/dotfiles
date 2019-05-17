@@ -6,32 +6,45 @@
 # ß
 # If the above line is not correctly displayed, fix your editor first!
 
+#order += "path_exists VPN"
+# path_exists VPN {
+	# path = "/proc/sys/net/ipv4/conf/tun0"
+# }
+
 general {
+		output_format = "i3bar"
         colors = true
         interval = 5
+		color_good = "#50FA7B"
+		color_degraded = "#F1FA8C"
+		color_bad = "#FF5555"
+		color_separator = "#BD93F9"
 }
 
+
 order += "disk /"
-order += "path_exists VPN"
+order += "battery all"
 order += "load"
 order += "tztime local"
 
-path_exists VPN {
-	path = "/proc/sys/net/ipv4/conf/tun0"
-}
+
 
 battery all {
-        format = "%status %percentage %remaining"
+        format = "%status %percentage %remaining "
+		status_chr = "☻"
+		status_unk = ""
+		status_full = ""
+		status_bat = ""
 }
 
 tztime local {
-        format = "%Y-%m-%d %H:%M:%S"
+        format = " %Y-%m-%d %H:%M:%S "
 }
 
 load {
-        format = "%1min"
+        format = " %1min "
 }
 
 disk "/" {
-        format = "%avail"
+        format = " %avail "
 }

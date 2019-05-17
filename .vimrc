@@ -22,7 +22,7 @@ Plug 'dracula/vim', {'as': 'dracula'}
 call plug#end()
 
 let g:airline_powerline_fonts = 1
-let g:airline_theme = 'jellybeans'
+let g:airline_theme = 'peaksea'
 
 let g:closetag_filenames = '*.html, *.xhtml, *.md'
 
@@ -37,6 +37,8 @@ au Filetype vue setlocal sts=2 sw=2 expandtab
 au Filetype html setlocal sts=2 sw=2 expandtab
 au Filetype javascript setlocal sts=2 sw=2 expandtab
 au BufNewFile,BufRead *.ejs set filetype=html
+au BufRead,BufNewFile /tmp/mutt-* set filetype=mail
+au Filetype mail setlocal ts=2 sw=2 tw=72 expandtab
 
 "ale stuff
 let g:airline#extensions#ale#enabled = 1
