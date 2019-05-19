@@ -1,5 +1,5 @@
 #include "/home/fckr/.config/rofi/config"
-Xft.dpi: 144
+Xft.dpi: 96
 Xft.rgba: rgb
 Xft.hinting: 1
 Xft.antialias: 1
