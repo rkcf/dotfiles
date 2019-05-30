@@ -49,6 +49,9 @@ bindsym $mod+p exec dmenu_run -sb "#FFB86C" -sf "#282A36" -nf "#F8F8F2" -nb "#28
 # installed.
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
+# take screenshot and pipe to ix.io
+bindsym $mod+s exec maim -s |& curl -F 'file=@-' 0x0.st | xclip -i
+
 # dynamic man lookup
 bindsym $mod+m exec ls /usr/share/man/man1/ | awk -F '.' '{print $1}' | $launcher -l 10 | xargs $term --class popup man
 for_window [class="popup"] floating enable
@@ -103,7 +106,7 @@ bindsym $mod+v split v
 bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
-bindsym $mod+s layout stacking
+bindsym $mod+Shift+s layout stacking
 bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
