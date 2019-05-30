@@ -52,8 +52,22 @@ bindsym $mod+p exec dmenu_run -sb "#FFB86C" -sf "#282A36" -nf "#F8F8F2" -nb "#28
 # dynamic man lookup
 bindsym $mod+m exec ls /usr/share/man/man1/ | awk -F '.' '{print $1}' | $launcher -l 10 | xargs $term --class popup man
 for_window [class="popup"] floating enable
-for_window [class="popup"] resize set 950 800 
+for_window [class="popup"] resize set 950 800
 for_window [class="popup"] move position mouse
+
+# URL plumber
+bindsym $mod+o exec xclip -o -selection c | xargs plumber
+bindsym $mod+Shift+o exec xclip -o -selection p | xargs plumber
+for_window [class="mpv"] floating enable
+for_window [class="Sxiv"] floating enable
+for_window [class="Viewnior"] floating enable
+for_window [class="feh"] floating enable
+
+for_window [class="w3m"] floating enable
+for_window [class="w3m"] resize set 950 800
+for_window [class="w3m"] move position mouse
+
+bindsym $mod+u exec cat /dev/null | $launcher -l 0 | xargs -0 -I query firefox --new-tab 'https://duckduckgo.com/?q=query'
 
 # change focus
 bindsym $mod+j focus left
