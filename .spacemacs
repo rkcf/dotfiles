@@ -327,9 +327,11 @@ you should place your code here."
 
   (setq org-agenda-files '("~/docs/orgmode/gtd.org.gpg"))
 
-  (setq org-todo-keywords '((sequence "TODO" "WIP" "WAITING" "|" "DONE")))
+  (setq org-todo-keywords
+        (quote ((sequence "TODO(t)" "WIP(i)" "|" "DONE(d)")
+                (sequence "WAITING(w)" "HOLD(h)" "|"))))
 
-  (setq org-todo-keyword-faces '(("WIP" . "green") ("WAITING" . "cyan")))
+  (setq org-todo-keyword-faces '(("WIP" . "green") ("WAITING" . "blue")))
 
   (setq org-capture-templates '(("i" "Todo [inbox]" entry
                                 (file "~/docs/orgmode/inbox.org")
@@ -386,6 +388,8 @@ you should place your code here."
                   (org-agenda-sorting-strategy '(priority-down))
                   (org-agenda-todo-ignore-scheduled t)
                   (org-agenda-todo-ignore-timestamp t)
+                  (org-agenda-skip-function
+                   '(org-agenda-skip-entry-if 'regexp "HOLD"))
                   (org-agenda-todo-ignore-deadlines t)))))))
 
 
