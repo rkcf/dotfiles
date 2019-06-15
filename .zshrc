@@ -99,3 +99,5 @@ alias pacr="sudo pacman -Rs"
 alias u="sudo pacman -Syu"
 alias ccm="sudo ccm"
 alias emacs="TERM=xterm-256color emacs -nw"
+alias dmenu='dmenu -sb "#FFB86C" -sf "#282A36" -nf "#F8F8F2" -nb "#282A36" -fn "Hack-14"'
+alias space='du * -sh | sort -h'
